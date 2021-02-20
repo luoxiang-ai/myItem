@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.java.teaching.mapper.CourseMapper" >
+  <resultMap id="BaseResultMap" type="com.java.teaching.entity.Course" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="sid" property="sid" jdbcType="INTEGER" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.java.teaching.entity.Course" extends="BaseResultMap" >
+    <result column="outline" property="outline" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, name, sid
+  </sql>
+  <sql id="Blob_Column_List" >
+    outline
+  </sql>
+  <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.java.teaching.entity.CourseExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from course
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.java.teaching.entity.CourseExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from course
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from course
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from course
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.java.teaching.entity.CourseExample" >
+    delete from course
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.java.teaching.entity.Course" >
+    insert into course (id, name, sid, 
+      outline)
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{sid,jdbcType=INTEGER}, 
+      #{outline,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.java.teaching.entity.Course" useGeneratedKeys="true" keyProperty="id">
+    insert into course
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="sid != null" >
+        sid,
+      </if>
+      <if test="outline != null" >
+        outline,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="sid != null" >
+        #{sid,jdbcType=INTEGER},
+      </if>
+      <if test="outline != null" >
+        #{outline,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+
+    <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+  </insert>
+  <select id="countByExample" parameterType="com.java.teaching.entity.CourseExample" resultType="java.lang.Integer" >
+    select count(*) from course
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update course
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.name != null" >
+        name = #{record.name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sid != null" >
+        sid = #{record.sid,jdbcType=INTEGER},
+      </if>
+      <if test="record.outline != null" >
+        outline = #{record.outline,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map" >
+    update course
+    set id = #{record.id,jdbcType=INTEGER},
+      name = #{record.name,jdbcType=VARCHAR},
+      sid = #{record.sid,jdbcType=INTEGER},
+      outline = #{record.outline,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update course
+    set id = #{record.id,jdbcType=INTEGER},
+      name = #{record.name,jdbcType=VARCHAR},
+      sid = #{record.sid,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.java.teaching.entity.Course" >
+    update course
+    <set >
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="sid != null" >
+        sid = #{sid,jdbcType=INTEGER},
+      </if>
+      <if test="outline != null" >
+        outline = #{outline,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.java.teaching.entity.Course" >
+    update course
+    set name = #{name,jdbcType=VARCHAR},
+      sid = #{sid,jdbcType=INTEGER},
+      outline = #{outline,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.java.teaching.entity.Course" >
+    update course
+    set name = #{name,jdbcType=VARCHAR},
+      sid = #{sid,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <!-- 根据分类id查询课程 -->
+  <select id="loadCourseBySortId" resultMap="BaseResultMap">
+    SELECT t1.* FROM course AS t1 LEFT JOIN course_sort AS t2 ON(t1.`sid` = t2.`id`) WHERE t1.`sid` = #{sid}
+  </select>
+
+  <!-- 根据用户id加载课程 -->
+  <select id="loadCourseByUserId" resultMap="BaseResultMap">
+    SELECT t1.* FROM course AS t1 LEFT JOIN student_course AS t2 ON(t1.`id` = t2.`cid`) WHERE t2.sid = #{userid}
+  </select>
+
+  <!-- 根据老师id查询该老师的教授课程 -->
+  <select id="loadCourseByTeacherId" resultMap="BaseResultMap">
+    SELECT t1.* FROM course AS t1 LEFT JOIN teacher_course AS t2 ON(t1.`id` = t2.`cid`) WHERE t2.`tid` = #{userid}
+  </select>
+
+  <!-- 模糊查询课程 -->
+  <select id="fuzzyQueryCourse" resultMap="BaseResultMap">
+    SELECT t1.* FROM course AS t1 INNER JOIN student_course AS t2 ON(t1.`id` = t2.`cid`)
+    <where>
+      <if test="studentId != null">
+        t2.`sid` = #{studentId}
+      </if>
+      <if test="name != null and name != ''">
+        AND `name` LIKE CONCAT('%', #{name}, '%')
+      </if>
+    </where>
+  </select>
+
+  <!-- 模糊查询全部课程 -->
+  <select id="fuzzyQueryAllCourse" resultMap="BaseResultMap">
+    SELECT t1.* FROM course AS t1 LEFT JOIN student_course AS t2 ON(t1.`id` = t2.`cid`)
+    <where>
+      <if test="name != null and name != ''">
+        WHERE `name` LIKE CONCAT('%', #{name}, '%')
+      </if>
+    </where>
+  </select>
+</mapper>

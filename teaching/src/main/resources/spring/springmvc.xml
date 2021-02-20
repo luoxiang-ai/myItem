@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+       http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
+       http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+    <!-- 扫描包 -->
+    <context:component-scan base-package="com.java.teaching.web.controller" />
+    <!-- 配置mvc注解 -->
+    <mvc:annotation-driven />
+    <!-- 配置视图解析器 -->
+    <bean id="resourceViewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="prefix" value="/WEB-INF/pages/" />
+        <property name="suffix" value=".jsp" />
+    </bean>
+    <!-- 配置静态资源放行  -->
+    <mvc:default-servlet-handler />
+
+    <!-- 配置文件上传 -->
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <!-- 设置字符集 -->
+        <property name="defaultEncoding" value="UTF-8" />
+    </bean>
+
+    <!-- 拦截器 -->
+<!--    <mvc:interceptors>-->
+<!--        <mvc:interceptor>-->
+<!--            &lt;!&ndash; 拦截请求路径 &ndash;&gt;-->
+<!--            <mvc:mapping path="/sys/*" />-->
+<!--            &lt;!&ndash; 具体的拦截器 &ndash;&gt;-->
+<!--            <bean class="com.java.teaching.interceptors.LoginInterceptor" />-->
+<!--        </mvc:interceptor>-->
+<!--    </mvc:interceptors>-->
+
+<!--    <aop:config proxy-target-class="true" />-->
+<!--    <bean id="authorizationAttributeSourceAdvisor" class="org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor">-->
+<!--        <property name="securityManager" ref="securityManager" />-->
+<!--    </bean>-->
+
+    <!-- 配置全局异常处理 -->
+    <bean class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+        <!-- 注入异常类型 -->
+        <property name="exceptionMappings">
+            <props>
+                <prop key="org.apache.shiro.authz.UnauthorizedException">forward:/WEB-INF/pages/system/error/noPermission.html</prop>
+            </props>
+        </property>
+    </bean>
+</beans>

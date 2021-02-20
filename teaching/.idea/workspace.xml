@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="45f82ade-f6ba-4309-9793-dadd4c60052d" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CodeInsightWorkspaceSettings">
+    <option name="optimizeImportsOnTheFly" value="true" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Interface" />
+        <option value="spring-beans.schema" />
+        <option value="Jsp File" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="mavenHome" value="D:/JavaTools/apache-maven-3.5.4" />
+        <option name="userSettingsFile" value="D:\JavaTools\apache-maven-3.5.4\conf\settings.xml" />
+      </MavenGeneralSettings>
+    </option>
+    <option name="importingSettings">
+      <MavenImportingSettings>
+        <option name="importAutomatically" value="true" />
+      </MavenImportingSettings>
+    </option>
+  </component>
+  <component name="ProjectId" id="1nP0sQ7CNy8kU8cfNpJjz0meV3o" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.0" />
+    <property name="settings.editor.selected.configurable" value="File.Encoding" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="com.java.teaching.service" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="F:\Code\JavaCode2020\teaching\src\main\webapp\WEB-INF\pages\system\error" />
+      <recent name="F:\Code\JavaCode2020\teaching\src\main\resources\shiro" />
+      <recent name="F:\Code\JavaCode2020\teaching\src\main\java\com\java\teaching\mapper" />
+      <recent name="F:\Code\JavaCode2020\teaching\src\main\java\com\java\teaching\entity" />
+      <recent name="F:\Code\JavaCode2020\teaching\src\main\webapp\resources" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="F:\Code\JavaCode2020\teaching\src\main\webapp\WEB-INF\pages\system" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="teaching [tomcat7:run]" type="MavenRunConfiguration" factoryName="Maven" temporary="true">
+      <MavenSettings>
+        <option name="myGeneralSettings" />
+        <option name="myRunnerSettings" />
+        <option name="myRunnerParameters">
+          <MavenRunnerParameters>
+            <option name="profiles">
+              <set />
+            </option>
+            <option name="goals">
+              <list>
+                <option value="tomcat7:run" />
+              </list>
+            </option>
+            <option name="pomFileName" value="pom.xml" />
+            <option name="profilesMap">
+              <map />
+            </option>
+            <option name="resolveToWorkspace" value="false" />
+            <option name="workingDirPath" value="$PROJECT_DIR$" />
+          </MavenRunnerParameters>
+        </option>
+      </MavenSettings>
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Maven.teaching [tomcat7:run]" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="45f82ade-f6ba-4309-9793-dadd4c60052d" name="Default Changelist" comment="" />
+      <created>1611276624598</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1611276624598</updated>
+      <workItem from="1611276632679" duration="22967000" />
+      <workItem from="1611361371877" duration="15985000" />
+      <workItem from="1611383661072" duration="19924000" />
+      <workItem from="1611448224730" duration="36177000" />
+      <workItem from="1611548041715" duration="25125000" />
+      <workItem from="1611621538722" duration="12409000" />
+      <workItem from="1611794026682" duration="19390000" />
+      <workItem from="1611879848539" duration="32434000" />
+      <workItem from="1611967052282" duration="27639000" />
+      <workItem from="1612054742709" duration="5881000" />
+      <workItem from="1612087318528" duration="12860000" />
+      <workItem from="1612140308205" duration="20770000" />
+      <workItem from="1612227273856" duration="31660000" />
+      <workItem from="1612315036998" duration="3513000" />
+      <workItem from="1612337956559" duration="25427000" />
+      <workItem from="1612407276197" duration="992000" />
+      <workItem from="1612514852435" duration="2628000" />
+      <workItem from="1612572040020" duration="11443000" />
+      <workItem from="1612669905749" duration="15499000" />
+      <workItem from="1613011444076" duration="9534000" />
+      <workItem from="1613100441977" duration="12203000" />
+      <workItem from="1613217059118" duration="933000" />
+      <workItem from="1613790388567" duration="6315000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="488" y="48" key="#com.intellij.ide.util.MemberChooser" timestamp="1613013614311">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="488" y="48" key="#com.intellij.ide.util.MemberChooser/0.0.1366.728@0.0.1366.728" timestamp="1613013614311" />
+    <state x="463" y="119" key="FileChooserDialogImpl" timestamp="1613133280808">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="463" y="119" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1613133280808" />
+    <state width="1323" height="140" key="GridCell.Tab.0.bottom" timestamp="1613829869542">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="1323" height="140" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1613829869542" />
+    <state width="1323" height="140" key="GridCell.Tab.0.center" timestamp="1613829869542">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="1323" height="140" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1613829869542" />
+    <state width="1323" height="140" key="GridCell.Tab.0.left" timestamp="1613829869541">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="1323" height="140" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1613829869541" />
+    <state width="1323" height="140" key="GridCell.Tab.0.right" timestamp="1613829869542">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="1323" height="140" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1613829869542" />
+    <state width="1323" height="251" key="GridCell.Tab.1.bottom" timestamp="1613221974886">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="1323" height="251" key="GridCell.Tab.1.bottom/0.0.1366.728@0.0.1366.728" timestamp="1613221974886" />
+    <state width="1323" height="251" key="GridCell.Tab.1.center" timestamp="1613221974886">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="1323" height="251" key="GridCell.Tab.1.center/0.0.1366.728@0.0.1366.728" timestamp="1613221974886" />
+    <state width="1323" height="251" key="GridCell.Tab.1.left" timestamp="1613221974886">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="1323" height="251" key="GridCell.Tab.1.left/0.0.1366.728@0.0.1366.728" timestamp="1613221974886" />
+    <state width="1323" height="251" key="GridCell.Tab.1.right" timestamp="1613221974886">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="1323" height="251" key="GridCell.Tab.1.right/0.0.1366.728@0.0.1366.728" timestamp="1613221974886" />
+    <state x="163" y="0" key="SettingsEditor" timestamp="1612584221275">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="163" y="0" key="SettingsEditor/0.0.1366.728@0.0.1366.728" timestamp="1612584221275" />
+    <state width="498" height="446" key="SwitcherDM" timestamp="1613130973191">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="498" height="446" key="SwitcherDM/0.0.1366.728@0.0.1366.728" timestamp="1613130973191" />
+    <state x="92" y="92" width="1182" height="544" key="dock-window-1" timestamp="1611622441616">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="92" y="92" width="1182" height="544" key="dock-window-1/0.0.1366.728@0.0.1366.728" timestamp="1611622441616" />
+    <state x="92" y="92" width="1182" height="544" key="dock-window-2" timestamp="1611622441616">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="92" y="92" width="1182" height="544" key="dock-window-2/0.0.1366.728@0.0.1366.728" timestamp="1611622441616" />
+    <state x="324" y="90" width="700" height="530" key="recent.locations.popup" timestamp="1611794723047">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="324" y="90" width="700" height="530" key="recent.locations.popup/0.0.1366.728@0.0.1366.728" timestamp="1611794723047" />
+    <state x="339" y="162" key="run.anything.popup" timestamp="1612539700449">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="339" y="162" key="run.anything.popup/0.0.1366.728@0.0.1366.728" timestamp="1612539700449" />
+    <state x="346" y="49" width="672" height="678" key="search.everywhere.popup" timestamp="1612679492199">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="346" y="49" width="672" height="678" key="search.everywhere.popup/0.0.1366.728@0.0.1366.728" timestamp="1612679492199" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/java/teaching/web/controller/StudentController.java</url>
+          <line>114</line>
+          <option name="timeStamp" value="6" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/java/teaching/web/controller/StudentWorkController.java</url>
+          <line>30</line>
+          <option name="timeStamp" value="53" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/java/teaching/service/impl/ResourceServiceImpl.java</url>
+          <line>28</line>
+          <option name="timeStamp" value="54" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/java/teaching/web/controller/ResourceController.java</url>
+          <line>78</line>
+          <option name="timeStamp" value="57" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/java/teaching/service/impl/ResearchServiceImpl.java</url>
+          <line>100</line>
+          <option name="timeStamp" value="61" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+    <watches-manager>
+      <configuration name="MavenRunConfiguration">
+        <watch expression="userVo.classid" />
+      </configuration>
+    </watches-manager>
+  </component>
+</project>

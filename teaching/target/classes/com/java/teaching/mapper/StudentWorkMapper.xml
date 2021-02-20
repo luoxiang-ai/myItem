@@ -1,0 +1,301 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.java.teaching.mapper.StudentWorkMapper" >
+  <resultMap id="BaseResultMap" type="com.java.teaching.common.vo.StudentWorkVo" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="path" property="path" jdbcType="VARCHAR" />
+    <result column="commonts" property="commonts" jdbcType="VARCHAR" />
+    <result column="score" property="score" jdbcType="VARCHAR" />
+    <result column="flag" property="flag" jdbcType="BIT" />
+    <result column="completetime" property="completetime" jdbcType="TIMESTAMP" />
+    <result column="uid" property="uid" jdbcType="INTEGER" />
+    <result column="cid" property="cid" jdbcType="INTEGER" />
+    <result column="wid" property="wid" jdbcType="INTEGER" />
+    <result column="realname" property="realname" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, name, path, commonts, score, flag, completetime, uid, cid, wid
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.java.teaching.entity.StudentWorkExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from student_work
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from student_work
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from student_work
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.java.teaching.entity.StudentWorkExample" >
+    delete from student_work
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.java.teaching.entity.StudentWork" >
+    insert into student_work (id, name, path, 
+      commonts, score, flag, 
+      completetime, uid, cid, 
+      wid)
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{path,jdbcType=VARCHAR}, 
+      #{commonts,jdbcType=VARCHAR}, #{score,jdbcType=VARCHAR}, #{flag,jdbcType=BIT}, 
+      #{completetime,jdbcType=TIMESTAMP}, #{uid,jdbcType=INTEGER}, #{cid,jdbcType=INTEGER}, 
+      #{wid,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.java.teaching.entity.StudentWork" >
+    insert into student_work
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="path != null" >
+        path,
+      </if>
+      <if test="commonts != null" >
+        commonts,
+      </if>
+      <if test="score != null" >
+        score,
+      </if>
+      <if test="flag != null" >
+        flag,
+      </if>
+      <if test="completetime != null" >
+        completetime,
+      </if>
+      <if test="uid != null" >
+        uid,
+      </if>
+      <if test="cid != null" >
+        cid,
+      </if>
+      <if test="wid != null" >
+        wid,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="path != null" >
+        #{path,jdbcType=VARCHAR},
+      </if>
+      <if test="commonts != null" >
+        #{commonts,jdbcType=VARCHAR},
+      </if>
+      <if test="score != null" >
+        #{score,jdbcType=VARCHAR},
+      </if>
+      <if test="flag != null" >
+        #{flag,jdbcType=BIT},
+      </if>
+      <if test="completetime != null" >
+        #{completetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="uid != null" >
+        #{uid,jdbcType=INTEGER},
+      </if>
+      <if test="cid != null" >
+        #{cid,jdbcType=INTEGER},
+      </if>
+      <if test="wid != null" >
+        #{wid,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.java.teaching.entity.StudentWorkExample" resultType="java.lang.Integer" >
+    select count(*) from student_work
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update student_work
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.name != null" >
+        name = #{record.name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.path != null" >
+        path = #{record.path,jdbcType=VARCHAR},
+      </if>
+      <if test="record.commonts != null" >
+        commonts = #{record.commonts,jdbcType=VARCHAR},
+      </if>
+      <if test="record.score != null" >
+        score = #{record.score,jdbcType=VARCHAR},
+      </if>
+      <if test="record.flag != null" >
+        flag = #{record.flag,jdbcType=BIT},
+      </if>
+      <if test="record.completetime != null" >
+        completetime = #{record.completetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.uid != null" >
+        uid = #{record.uid,jdbcType=INTEGER},
+      </if>
+      <if test="record.cid != null" >
+        cid = #{record.cid,jdbcType=INTEGER},
+      </if>
+      <if test="record.wid != null" >
+        wid = #{record.wid,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update student_work
+    set id = #{record.id,jdbcType=INTEGER},
+      name = #{record.name,jdbcType=VARCHAR},
+      path = #{record.path,jdbcType=VARCHAR},
+      commonts = #{record.commonts,jdbcType=VARCHAR},
+      score = #{record.score,jdbcType=VARCHAR},
+      flag = #{record.flag,jdbcType=BIT},
+      completetime = #{record.completetime,jdbcType=TIMESTAMP},
+      uid = #{record.uid,jdbcType=INTEGER},
+      cid = #{record.cid,jdbcType=INTEGER},
+      wid = #{record.wid,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.java.teaching.entity.StudentWork" >
+    update student_work
+    <set >
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="path != null" >
+        path = #{path,jdbcType=VARCHAR},
+      </if>
+      <if test="commonts != null" >
+        commonts = #{commonts,jdbcType=VARCHAR},
+      </if>
+      <if test="score != null" >
+        score = #{score,jdbcType=VARCHAR},
+      </if>
+      <if test="flag != null" >
+        flag = #{flag,jdbcType=BIT},
+      </if>
+      <if test="completetime != null" >
+        completetime = #{completetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="uid != null" >
+        uid = #{uid,jdbcType=INTEGER},
+      </if>
+      <if test="cid != null" >
+        cid = #{cid,jdbcType=INTEGER},
+      </if>
+      <if test="wid != null" >
+        wid = #{wid,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.java.teaching.entity.StudentWork" >
+    update student_work
+    set name = #{name,jdbcType=VARCHAR},
+      path = #{path,jdbcType=VARCHAR},
+      commonts = #{commonts,jdbcType=VARCHAR},
+      score = #{score,jdbcType=VARCHAR},
+      flag = #{flag,jdbcType=BIT},
+      completetime = #{completetime,jdbcType=TIMESTAMP},
+      uid = #{uid,jdbcType=INTEGER},
+      cid = #{cid,jdbcType=INTEGER},
+      wid = #{wid,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <!-- 根据作业布置id查询作业提交情况 -->
+  <select id="loadStudentWorkByWorkId" resultMap="BaseResultMap">
+    SELECT t1.*,t3.`realname` FROM student_work AS t1 LEFT JOIN `work` AS t2 ON(t1.`wid` = t2.`wid`) LEFT JOIN sys_user AS t3 ON(t1.`uid` = t3.`userid`) WHERE t2.`wid` = #{wid}
+  </select>
+
+  <!-- 根据用户id和作业id查询我提交的作业 -->
+  <select id="loadMyWork" resultMap="BaseResultMap">
+    SELECT t1.* FROM student_work AS t1 LEFT JOIN `work` AS t2 ON(t1.`wid` = t2.`wid`) WHERE uid = #{uid} AND t2.`wid` = #{wid}
+  </select>
+</mapper>

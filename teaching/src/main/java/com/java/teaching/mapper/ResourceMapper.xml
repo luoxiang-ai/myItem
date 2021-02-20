@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.java.teaching.mapper.ResourceMapper" >
+  <resultMap id="BaseResultMap" type="com.java.teaching.common.vo.ResourceVo" >
+    <id column="r_id" property="rId" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="path" property="path" jdbcType="VARCHAR" />
+    <result column="c_id" property="cId" jdbcType="VARCHAR" />
+    <result column="s_id" property="sId" jdbcType="INTEGER" />
+    <result column="flag" property="flag" jdbcType="BIT" />
+    <result column="cname" property="cname" jdbcType="VARCHAR" />
+    <result column="sname" property="sname" jdbcType="VARCHAR" />
+
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    r_id, name, path, c_id, s_id, flag
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.java.teaching.entity.ResourceExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from resource
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from resource
+    where r_id = #{rId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from resource
+    where r_id = #{rId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.java.teaching.entity.ResourceExample" >
+    delete from resource
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.java.teaching.entity.Resource" >
+    insert into resource (r_id, name, path, 
+      c_id, s_id, flag)
+    values (#{rId,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{path,jdbcType=VARCHAR}, 
+      #{cId,jdbcType=VARCHAR}, #{sId,jdbcType=INTEGER}, #{flag,jdbcType=BIT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.java.teaching.entity.Resource" >
+    insert into resource
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="rId != null" >
+        r_id,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="path != null" >
+        path,
+      </if>
+      <if test="cId != null" >
+        c_id,
+      </if>
+      <if test="sId != null" >
+        s_id,
+      </if>
+      <if test="flag != null" >
+        flag,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="rId != null" >
+        #{rId,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="path != null" >
+        #{path,jdbcType=VARCHAR},
+      </if>
+      <if test="cId != null" >
+        #{cId,jdbcType=VARCHAR},
+      </if>
+      <if test="sId != null" >
+        #{sId,jdbcType=INTEGER},
+      </if>
+      <if test="flag != null" >
+        #{flag,jdbcType=BIT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.java.teaching.entity.ResourceExample" resultType="java.lang.Integer" >
+    select count(*) from resource
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update resource
+    <set >
+      <if test="record.rId != null" >
+        r_id = #{record.rId,jdbcType=INTEGER},
+      </if>
+      <if test="record.name != null" >
+        name = #{record.name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.path != null" >
+        path = #{record.path,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cId != null" >
+        c_id = #{record.cId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sId != null" >
+        s_id = #{record.sId,jdbcType=INTEGER},
+      </if>
+      <if test="record.flag != null" >
+        flag = #{record.flag,jdbcType=BIT},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update resource
+    set r_id = #{record.rId,jdbcType=INTEGER},
+      name = #{record.name,jdbcType=VARCHAR},
+      path = #{record.path,jdbcType=VARCHAR},
+      c_id = #{record.cId,jdbcType=VARCHAR},
+      s_id = #{record.sId,jdbcType=INTEGER},
+      flag = #{record.flag,jdbcType=BIT}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.java.teaching.entity.Resource" >
+    update resource
+    <set >
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="path != null" >
+        path = #{path,jdbcType=VARCHAR},
+      </if>
+      <if test="cId != null" >
+        c_id = #{cId,jdbcType=VARCHAR},
+      </if>
+      <if test="sId != null" >
+        s_id = #{sId,jdbcType=INTEGER},
+      </if>
+      <if test="flag != null" >
+        flag = #{flag,jdbcType=BIT},
+      </if>
+    </set>
+    where r_id = #{rId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.java.teaching.entity.Resource" >
+    update resource
+    set name = #{name,jdbcType=VARCHAR},
+      path = #{path,jdbcType=VARCHAR},
+      c_id = #{cId,jdbcType=VARCHAR},
+      s_id = #{sId,jdbcType=INTEGER},
+      flag = #{flag,jdbcType=BIT}
+    where r_id = #{rId,jdbcType=INTEGER}
+  </update>
+
+  <!-- 查询课程资料 -->
+  <select id="queryAllResource" resultMap="BaseResultMap">
+    SELECT t1.*, t2.`name` AS cname, t3.`name` AS sname FROM resource AS t1 LEFT JOIN course AS t2 ON(t1.`c_id` = t2.`id`) LEFT JOIN resource_sort AS t3 ON(t3.`id` = t1.`s_id`)
+  </select>
+
+  <!-- 根据课程id查询该课程的资料 -->
+  <select id="queryResourceByCourseId" resultMap="BaseResultMap" parameterType="string">
+    SELECT t1.* FROM resource AS t1, course AS t2 WHERE t2.`id` = t1.`c_id` AND t1.`c_id` = #{cId};
+  </select>
+
+  <!-- 模糊查询资料 -->
+  <select id="fuzzyQueryResource" resultMap="BaseResultMap">
+    SELECT t1.*, t2.`name` AS cname, t3.`name` AS sname FROM resource AS t1 LEFT JOIN course AS t2 ON(t1.`c_id` = t2.`id`) LEFT JOIN resource_sort AS t3 ON (t1.`s_id` = t3.`id`)
+    <where>
+      <if test="name != null and name != ''">
+        t1.`name` LIKE CONCAT('%', #{name}, '%')
+      </if>
+    </where>
+  </select>
+
+  <!-- 加载推荐资源 -->
+  <select id="loadRecommendResource" resultMap="BaseResultMap">
+    SELECT t1.*, t2.`name` AS cname, t3.`name` AS sname FROM resource AS t1 LEFT JOIN course AS t2 ON(t1.`c_id` = t2.`id`) LEFT JOIN resource_sort AS t3 ON(t3.`id` = t1.`s_id`) WHERE t1.`flag` = #{flag} AND t1.`s_id` != #{sId}
+  </select>
+
+  <!-- 加载推荐书 -->
+  <select id="loadRecommendBook" resultMap="BaseResultMap">
+    SELECT t1.*, t2.`name` AS cname, t3.`name` AS sname FROM resource AS t1 LEFT JOIN course AS t2 ON(t1.`c_id` = t2.`id`) LEFT JOIN resource_sort AS t3 ON(t3.`id` = t1.`s_id`) WHERE t1.`flag` = #{flag} AND t1.`s_id` = #{sId}
+  </select>
+
+  <!-- 根据分类id查询资源 -->
+  <select id="loadResourceBySortId" resultMap="BaseResultMap">
+    SELECT t1.* FROM resource AS t1 LEFT JOIN resource_sort AS t2 ON(t1.`s_id` = t2.`id`) WHERE t2.`id` = #{sId}
+  </select>
+</mapper>

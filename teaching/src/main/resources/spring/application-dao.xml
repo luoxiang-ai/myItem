@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <!-- 引入外部配置文件 -->
+    <context:property-placeholder local-override="true" location="classpath:db.properties" />
+    <!-- 配置数据源 -->
+    <!-- 使用spirngjdbc的数据源 -->
+    <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="driverClassName" value="${driver}" />
+        <property name="url" value="${url}" />
+        <property name="username" value="${username}" />
+        <property name="password" value="${password}" />
+    </bean>
+
+    <!-- 使用c3p0的数据源 -->
+    <bean id="dataSource1" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
+        <property name="driverClass" value="${driver}" />
+        <property name="jdbcUrl" value="${url}" />
+        <property name="user" value="${username}" />
+        <property name="password" value="${password}" />
+
+        <!-- 设置初始化连接池大小 -->
+        <property name="initialPoolSize" value="5" />
+        <!-- 设置最大连接数 -->
+        <property name="maxPoolSize" value="50" />
+        <!-- 设置最小连接数 -->
+        <property name="minPoolSize" value="10" />
+    </bean>
+
+    <!-- 使用dbcp的数据源 -->
+    <bean id="dataSource2" class="org.apache.commons.dbcp.BasicDataSource">
+        <property name="driverClassName" value="${driver}" />
+        <property name="url" value="${url}" />
+        <property name="username" value="${username}" />
+        <property name="password" value="${password}" />
+
+        <!-- 设置初始化连接池大小 -->
+        <property name="initialSize" value="5" />
+        <!-- 设置最大连接数 -->
+        <property name="maxIdle" value="50" />
+        <!-- 设置最大活动连接数 -->
+        <property name="maxActive" value="10" />
+        <!-- 设置等待时间 -->
+        <property name="maxWait" value="5000" />
+    </bean>
+
+    <!-- 使用druid的数据源 -->
+    <bean id="dataSource3" class="com.alibaba.druid.pool.DruidDataSource">
+        <property name="driverClassName" value="${driver}" />
+        <property name="url" value="${url}" />
+        <property name="username" value="${username}" />
+        <property name="password" value="${password}" />
+
+        <!-- 设置初始化连接池大小 -->
+        <property name="initialSize" value="5" />
+        <!-- 设置最大连接数 -->
+<!--        <property name="maxIdle" value="50" />-->
+        <!-- 设置最大活动连接数 -->
+        <property name="maxActive" value="10" />
+        <!-- 设置等待时间 -->
+        <property name="maxWait" value="5000" />
+    </bean>
+
+    <!-- 整合mybatis开始 -->
+    <!-- 创建SqlSessionFactory -->
+    <bean class="org.mybatis.spring.SqlSessionFactoryBean">
+        <!-- 配置 -->
+        <property name="dataSource" ref="dataSource3" />
+        <property name="configLocation" value="classpath:mybatis/mybatis-config.xml" />
+    </bean>
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="basePackage" value="com.java.teaching.mapper" />
+    </bean>
+    <!-- 整合mybatis结束 -->
+</beans>

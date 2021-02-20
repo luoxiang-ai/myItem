@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.java.teaching.mapper.ScoreInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.java.teaching.common.vo.ScoreInfoVo" >
+    <id column="sid" property="sid" jdbcType="VARCHAR" />
+    <id column="cid" property="cid" jdbcType="VARCHAR" />
+    <result column="score" property="score" jdbcType="DECIMAL" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    sid, cid, score
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.java.teaching.entity.ScoreInfoExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from score_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.java.teaching.entity.ScoreInfoKey" >
+    select 
+    <include refid="Base_Column_List" />
+    from score_info
+    where sid = #{sid,jdbcType=VARCHAR}
+      and cid = #{cid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.java.teaching.entity.ScoreInfoKey" >
+    delete from score_info
+    where sid = #{sid,jdbcType=VARCHAR}
+      and cid = #{cid,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.java.teaching.entity.ScoreInfoExample" >
+    delete from score_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.java.teaching.entity.ScoreInfo" >
+    insert into score_info (sid, cid, score
+      )
+    values (#{sid,jdbcType=VARCHAR}, #{cid,jdbcType=VARCHAR}, #{score,jdbcType=DECIMAL}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.java.teaching.entity.ScoreInfo" >
+    insert into score_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="sid != null" >
+        sid,
+      </if>
+      <if test="cid != null" >
+        cid,
+      </if>
+      <if test="score != null" >
+        score,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="sid != null" >
+        #{sid,jdbcType=VARCHAR},
+      </if>
+      <if test="cid != null" >
+        #{cid,jdbcType=VARCHAR},
+      </if>
+      <if test="score != null" >
+        #{score,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.java.teaching.entity.ScoreInfoExample" resultType="java.lang.Integer" >
+    select count(*) from score_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update score_info
+    <set >
+      <if test="record.sid != null" >
+        sid = #{record.sid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cid != null" >
+        cid = #{record.cid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.score != null" >
+        score = #{record.score,jdbcType=DECIMAL},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update score_info
+    set sid = #{record.sid,jdbcType=VARCHAR},
+      cid = #{record.cid,jdbcType=VARCHAR},
+      score = #{record.score,jdbcType=DECIMAL}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.java.teaching.entity.ScoreInfo" >
+    update score_info
+    <set >
+      <if test="score != null" >
+        score = #{score,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where sid = #{sid,jdbcType=VARCHAR}
+      and cid = #{cid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.java.teaching.entity.ScoreInfo" >
+    update score_info
+    set score = #{score,jdbcType=DECIMAL}
+    where sid = #{sid,jdbcType=VARCHAR}
+      and cid = #{cid,jdbcType=VARCHAR}
+  </update>
+
+  <!-- 根据用户id查询成绩 -->
+  <select id="loadScoreById" resultMap="BaseResultMap">
+    SELECT t1.`score`,t2.`name` FROM score_info AS t1 LEFT JOIN course AS t2 ON(t1.`cid` = t2.`id`) WHERE t1.`sid` = #{sid}
+  </select>
+
+  <!-- 根据课程名称查询成绩 -->
+  <select id="loadScoreByCourseName" resultMap="BaseResultMap">
+    SELECT t1.`score`,t2.`name` FROM score_info AS t1 LEFT JOIN course AS t2 ON(t1.`cid` = t2.`id`) WHERE t1.`sid` = #{sid}
+    <if test="name != null and name != ''">
+      AND t2.name LIKE CONCAT('%', #{name}, '%')
+    </if>
+  </select>
+</mapper>

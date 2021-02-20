@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:tx="http://www.springframework.org/schema/tx" xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+       http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+    <!-- 扫描包 -->
+    <context:component-scan base-package="com.java.teaching.service" />
+
+    <!-- 配置事务管理器 -->
+    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <!-- 注入数据源 -->
+        <property name="dataSource" ref="dataSource3" />
+    </bean>
+
+    <!-- 通知策略 -->
+    <tx:advice id="txAdvice" transaction-manager="transactionManager">
+        <!-- 定义属性，声明事务规则 -->
+        <tx:attributes>
+            <tx:method name="insert*" />
+            <tx:method name="start*" />
+            <tx:method name="add*" rollback-for="Exception" />
+            <tx:method name="save*" />
+            <tx:method name="update*" />
+            <tx:method name="review*" />
+            <tx:method name="reset*" />
+            <tx:method name="change*" />
+            <tx:method name="modify*" />
+            <tx:method name="del*" />
+            <tx:method name="remove*" />
+            <tx:method name="batch*" />
+
+            <!-- 前面的都不满足时进入，其它情况，只读 -->
+            <tx:method name="*" read-only="true" />
+        </tx:attributes>
+    </tx:advice>
+
+    <!-- AOP切面 -->
+    <aop:config>
+        <!-- 声明切点 -->
+        <aop:pointcut id="pointcut" expression="execution(* com.java.teaching.service..*.*(..))" />
+        <!-- 织入事务通知 -->
+        <aop:advisor advice-ref="txAdvice" pointcut-ref="pointcut" />
+    </aop:config>
+</beans>

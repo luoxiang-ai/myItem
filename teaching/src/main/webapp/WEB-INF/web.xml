@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" id="WebApp_ID" version="3.1">
+  <display-name>teaching</display-name>
+
+  <!-- 设置欢迎页面 -->
+  <welcome-file-list>
+    <welcome-file>index.jsp</welcome-file>
+  </welcome-file-list>
+
+  <!-- shiro过滤配置开始 -->
+  <filter>
+    <filter-name>shiroFilter</filter-name>
+    <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+    <init-param>
+      <param-name>targetFilterLifecycle</param-name>
+      <param-value>true</param-value>
+    </init-param>
+    <init-param>
+      <param-name>targetBeanName</param-name>
+      <param-value>shiroFilter</param-value>
+    </init-param>
+  </filter>
+  <filter-mapping>
+    <filter-name>shiroFilter</filter-name>
+    <servlet-name>springmvc</servlet-name>
+  </filter-mapping>
+  <!-- shiro过滤配置结束 -->
+
+  <!-- 配置上下文监听器 -->
+  <listener>
+    <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+  </listener>
+
+  <!-- 加载applicationContext.xml -->
+  <context-param>
+    <param-name>contextConfigLocation</param-name>
+    <param-value>classpath:spring/applicationContext.xml</param-value>
+  </context-param>
+
+  <!-- druid监控页面配置开始 -->
+  <servlet>
+    <servlet-name>statViewServlet</servlet-name>
+    <servlet-class>com.alibaba.druid.support.http.StatViewServlet</servlet-class>
+    <!-- 配置登录名 -->
+    <init-param>
+      <param-name>loginUsername</param-name>
+      <param-value>root</param-value>
+    </init-param>
+    <!-- 配置密码 -->
+    <init-param>
+      <param-name>loginPassword</param-name>
+      <param-value>123456</param-value>
+    </init-param>
+    <!-- 设置白名单 -->
+    <init-param>
+      <param-name>allow</param-name>
+      <param-value></param-value>
+    </init-param>
+    <!-- 设置黑名单 -->
+    <init-param>
+      <param-name>deny</param-name>
+      <param-value></param-value>
+    </init-param>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>statViewServlet</servlet-name>
+    <url-pattern>/druid/*</url-pattern>
+  </servlet-mapping>
+
+  <filter>
+    <filter-name>webStatFilter</filter-name>
+    <filter-class>com.alibaba.druid.support.http.WebStatFilter</filter-class>
+    <!-- 注入过滤的样式文件 -->
+    <init-param>
+      <param-name>exclusions</param-name>
+      <param-value>*.js,*.gif,*.jpg,*.png,*.css,*.ico,/druid/*</param-value>
+    </init-param>
+  </filter>
+  <filter-mapping>
+    <filter-name>webStatFilter</filter-name>
+    <servlet-name>statViewServlet</servlet-name>
+  </filter-mapping>
+  <!-- druid监控页面配置结束 -->
+
+  <!-- 配置DispatcherServlet -->
+  <servlet>
+    <servlet-name>springmvc</servlet-name>
+    <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+    <init-param>
+      <param-name>contextConfigLocation</param-name>
+      <param-value>classpath:spring/springmvc.xml</param-value>
+    </init-param>
+    <load-on-startup>1</load-on-startup>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>springmvc</servlet-name>
+    <url-pattern>*.action</url-pattern>
+  </servlet-mapping>
+
+  <!-- 配置字符编码过滤器 -->
+  <filter>
+    <filter-name>encodingFilter</filter-name>
+    <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+    <init-param>
+      <param-name>encoding</param-name>
+      <param-value>UTF-8</param-value>
+    </init-param>
+  </filter>
+  <filter-mapping>
+    <filter-name>encodingFilter</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
+
+  <!-- 根据响应状态码配置对应的页面 -->
+  <error-page>
+    <error-code>404</error-code>
+    <location>/WEB-INF/pages/system/error/404.html</location>
+  </error-page>
+</web-app>
