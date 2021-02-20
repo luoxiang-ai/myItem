@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Insert title here</title>
+    <link rel="stylesheet" href="resources/layui/css/layui.css">
+</head>
+<body>
+
+<table class="layui-hide" id="logInfoTable" lay-filter="logInfoTable"></table>
+
+<script src="resources/layui/layui.js"></script>
+<script>
+    layui.use('table', function(){
+        var table = layui.table;
+
+        //渲染数据表格
+        table.render({
+            elem: '#logInfoTable'   //渲染的目标对象
+            ,url:'/carrent/logInfo/loadAllLogInfo.action' //数据接口
+            // ,title: '用户数据表'//数据导出来的标题
+            // ,toolbar:"#logInfoToolBar"   //表格的工具条
+            // ,height:'full-150'
+            // ,cellMinWidth:100 //设置列的最小默认宽度
+            ,limit: 10
+            ,page: true  //是否启用分页
+            ,cols: [[   //列表数据
+                {type: 'checkbox', fixed: 'left'}
+                ,{field:'id', title:'ID',align:'center'}
+                ,{field:'loginname', title:'日志名称',align:'center'}
+                ,{field:'loginip', title:'日志备注',align:'center'}
+                ,{field:'logintime', title:'日志备注',align:'center'}
+                ,{fixed: 'right', title:'操作', toolbar: '#logInfoBar', width:150,align:'center'}
+            ]]
+        })
+    });
+</script>
+</body>
+</html>

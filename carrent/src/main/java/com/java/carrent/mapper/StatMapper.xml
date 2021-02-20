@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.java.carrent.mapper.StatMapper">
+    <!-- 查询客户地区的数据 -->
+    <select id="queryCustomerAreaStat" resultType="com.java.carrent.entity.BaseEntity">
+        SELECT c.`address` AS name, COUNT(1) AS value FROM bus_customer AS c GROUP BY c.address;
+    </select>
+
+    <!-- 查询业务员年度业绩数据 -->
+    <select id="queryOpernameYearGradeStat" resultType="com.java.carrent.entity.BaseEntity">
+        SELECT r.`opername` AS `name`, SUM(price) AS `value` FROM bus_rent AS r WHERE DATE_FORMAT(r.`createtime`, '%Y') = #{value} GROUP BY r.`opername`;
+    </select>
+
+    <!-- 查询公司年度业绩统计 -->
+    <select id="queryCompanyYearGradeStat" resultType="java.lang.Double">
+        SELECT SUM(r.`price`) AS `value` FROM bus_rent AS r WHERE DATE_FORMAT(r.`createtime`, '%Y%m') = CONCAT(#{value}, '01')
+        UNION ALL
+        SELECT SUM(r.`price`) AS `value` FROM bus_rent AS r WHERE DATE_FORMAT(r.`createtime`, '%Y%m') = CONCAT(#{value}, '02')
+        UNION ALL
+        SELECT SUM(r.`price`) AS `value` FROM bus_rent AS r WHERE DATE_FORMAT(r.`createtime`, '%Y%m') = CONCAT(#{value}, '03')
+        UNION ALL
+        SELECT SUM(r.`price`) AS `value` FROM bus_rent AS r WHERE DATE_FORMAT(r.`createtime`, '%Y%m') = CONCAT(#{value}, '04')
+        UNION ALL
+        SELECT SUM(r.`price`) AS `value` FROM bus_rent AS r WHERE DATE_FORMAT(r.`createtime`, '%Y%m') = CONCAT(#{value}, '05')
+        UNION ALL
+        SELECT SUM(r.`price`) AS `value` FROM bus_rent AS r WHERE DATE_FORMAT(r.`createtime`, '%Y%m') = CONCAT(#{value}, '06')
+        UNION ALL
+        SELECT SUM(r.`price`) AS `value` FROM bus_rent AS r WHERE DATE_FORMAT(r.`createtime`, '%Y%m') = CONCAT(#{value}, '07')
+        UNION ALL
+        SELECT SUM(r.`price`) AS `value` FROM bus_rent AS r WHERE DATE_FORMAT(r.`createtime`, '%Y%m') = CONCAT(#{value}, '08')
+        UNION ALL
+        SELECT SUM(r.`price`) AS `value` FROM bus_rent AS r WHERE DATE_FORMAT(r.`createtime`, '%Y%m') = CONCAT(#{value}, '09')
+        UNION ALL
+        SELECT SUM(r.`price`) AS `value` FROM bus_rent AS r WHERE DATE_FORMAT(r.`createtime`, '%Y%m') = CONCAT(#{value}, '10')
+        UNION ALL
+        SELECT SUM(r.`price`) AS `value` FROM bus_rent AS r WHERE DATE_FORMAT(r.`createtime`, '%Y%m') = CONCAT(#{value}, '11')
+        UNION ALL
+        SELECT SUM(r.`price`) AS `value` FROM bus_rent AS r WHERE DATE_FORMAT(r.`createtime`, '%Y%m') = CONCAT(#{value}, '12');
+    </select>
+</mapper>

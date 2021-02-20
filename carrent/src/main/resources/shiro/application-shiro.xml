@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <!-- 配置凭证匹配器 -->
+    <bean id="credentialsMatcher" class="org.apache.shiro.authc.credential.HashedCredentialsMatcher">
+        <!-- 配置加密算法 -->
+        <property name="hashAlgorithmName" value="md5" />
+    </bean>
+
+    <!-- 配置自定义realm -->
+    <bean id="loginRealm" class="com.java.carrent.realm.LoginRealm">
+        <!-- 注入凭证匹配器 -->
+        <property name="credentialsMatcher" ref="credentialsMatcher" />
+    </bean>
+
+    <!-- 配置安全管理器 -->
+    <bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
+        <!-- 注入自定义的realm -->
+        <property name="realm" ref="loginRealm" />
+        <!-- 注入缓存 -->
+        <property name="cacheManager" ref="cacheManager" />
+    </bean>
+
+    <!-- 配置shiro的过滤器 -->
+    <bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
+        <!-- 注入安全管理器 -->
+        <property name="securityManager" ref="securityManager" />
+        <!-- 注入未登录时的访问页面 -->
+        <property name="loginUrl" value="/login.action" />
+        <!-- 注入未授权的访问页面 -->
+        <property name="unauthorizedUrl" value="/login.action" />
+        <!-- 注入授权成功的访问页面 -->
+        <property name="successUrl" value="/sys/index.action" />
+        <!-- 配置过滤链 -->
+        <property name="filterChainDefinitions">
+            <value>
+                <!-- 放行登录页面 -->
+                /login*=anon
+                <!-- 放行登出页面 -->
+                /logout*=anon
+                /getCode*=anon
+                <!-- 配置登出，shiro会清除session -->
+                /logout.action=logout
+                <!-- 放行静态资源 -->
+                /resources/**=anon
+                <!-- 其它页面全拦截 -->
+                /**=authc
+            </value>
+        </property>
+    </bean>
+
+    <!-- 配置cache缓存 -->
+    <bean id="cacheManager" class="org.apache.shiro.cache.ehcache.EhCacheManager">
+        <property name="cacheManagerConfigFile" value="classpath:shiro/ehcache.xml" />
+    </bean>
+</beans>
